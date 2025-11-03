@@ -230,10 +230,8 @@ in
     htop
     nixfmt-rfc-style
     gcc
-    pkg-config
-    openssl
-    perl
     gnumake
+    spotify
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
