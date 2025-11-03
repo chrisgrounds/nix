@@ -108,6 +108,8 @@ in {
   users.defaultUserShell = pkgs.zsh;
 
   # Program Configuration
+  programs.hyprland.enable = true;
+
   programs.ssh.startAgent = true;
 
   programs.firefox.enable = true;
@@ -216,6 +218,7 @@ in {
     discord
     fzf
     ripgrep
+    kitty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
