@@ -5,15 +5,13 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
-  nixvim = import (
-    builtins.fetchGit {
-      url = "https://github.com/nix-community/nixvim";
-      ref = "nixos-25.05";
-    }
-  );
-in
-{
+  home-manager = builtins.fetchTarball
+    "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    ref = "nixos-25.05";
+  });
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -22,12 +20,7 @@ in
     nixvim.nixosModules.nixvim
   ];
 
-  nix = {
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-  };
+  nix = { settings.experimental-features = [ "nix-command" "flakes" ]; };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -104,14 +97,12 @@ in
   users.users.chris = {
     isNormalUser = true;
     description = "chris";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs;
+      [
+        kdePackages.kate
+        #  thunderbird
+      ];
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -122,11 +113,14 @@ in
   programs.firefox.enable = true;
 
   programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-};
+    enable = true;
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall =
+      true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   programs.zsh = {
     enable = true;
@@ -140,9 +134,7 @@ in
       theme = "robbyrussell";
     };
 
-    shellAliases = {
-      zed = "zeditor";
-    };
+    shellAliases = { zed = "zeditor"; };
   };
 
   programs.nixvim = {
@@ -156,21 +148,17 @@ in
       shiftwidth = 2;
     };
 
-    autoCmd = [
-      {
-        event = [ "VimEnter" ];
-        pattern = [ "*" ];
-        command = "if &diff | colorscheme blue | endif";
-      }
-    ];
+    autoCmd = [{
+      event = [ "VimEnter" ];
+      pattern = [ "*" ];
+      command = "if &diff | colorscheme blue | endif";
+    }];
 
     colorschemes.catppuccin.enable = true;
 
     plugins.lsp = {
       enable = true;
-      servers = {
-        nixd.enable = true;
-      };
+      servers = { nixd.enable = true; };
     };
 
     plugins.conform-nvim = {
@@ -189,41 +177,27 @@ in
     };
   };
 
-  home-manager.users.chris =
-    { pkgs, ... }:
-    {
-      home.stateVersion = "25.05";
-      home.packages = [ ];
-      programs.zed-editor = {
-        enable = true;
-        extensions = [
-          "nix"
-          "toml"
-          "rust"
-        ];
-        userSettings = {
-          theme = {
-            mode = "system";
-            dark = "One Dark";
-            light = "One Light";
-          };
-          hour_format = "hour24";
-          lsp = {
-            rust-analyzer = {
-              binary = {
-                path_lookup = true;
-              };
-            };
+  home-manager.users.chris = { pkgs, ... }: {
+    home.stateVersion = "25.05";
+    home.packages = [ ];
+    programs.zed-editor = {
+      enable = true;
+      extensions = [ "nix" "toml" "rust" ];
+      userSettings = {
+        theme = {
+          mode = "system";
+          dark = "One Dark";
+          light = "One Light";
+        };
+        hour_format = "hour24";
+        lsp = {
+          rust-analyzer = { binary = { path_lookup = true; }; };
 
-            nix = {
-              binary = {
-                path_lookup = true;
-              };
-            };
-          };
+          nix = { binary = { path_lookup = true; }; };
         };
       };
     };
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
