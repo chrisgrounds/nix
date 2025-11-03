@@ -233,6 +233,8 @@ in
     gnumake
     spotify
     discord
+    fzf
+    ripgrep
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
