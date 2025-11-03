@@ -121,6 +121,13 @@ in
 
   programs.firefox.enable = true;
 
+  programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+};
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -168,7 +175,7 @@ in
 
     plugins.conform-nvim = {
       enable = true;
-      settings.formatters_by_ft.nix = [ "nixfmt-rfc-style" ];
+      settings.formatters_by_ft.nix = [ "nixfmt" ];
       settings.format_on_save = {
         # Format on save in all files
         lspFallback = true;
@@ -228,7 +235,7 @@ in
     wezterm
     rustup
     htop
-    nixfmt-rfc-style
+    nixfmt
     gcc
     gnumake
     spotify
