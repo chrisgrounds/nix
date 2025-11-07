@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
@@ -29,15 +29,14 @@ in
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  nixpkgs.config.allowUnfree = true;
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
@@ -57,16 +56,14 @@ in
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
+  services.xserver.xkb = {
+    layout = "gb";
+    variant = "";
+  }; # Configure keymap in X11
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-  };
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -96,19 +93,13 @@ in
 
   users.defaultUserShell = pkgs.zsh;
 
-  nixpkgs.config.allowUnfree = true;
-
-  # Program Configuration
   # programs.hyprland.enable = false;
-
   programs.nix-ld.enable = true;
-
   programs.ssh.startAgent = true;
-
   programs.firefox.enable = true;
 
   home-manager.users.chris =
-    { pkgs, ... }:
+    { ... }:
     {
       home.stateVersion = "25.05";
       home.packages = [ ];
