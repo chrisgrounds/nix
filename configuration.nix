@@ -162,20 +162,20 @@ in {
     programs.zed-editor = {
       enable = true;
       extraPackages = [ pkgs.nixd ];
-      # extensions = [ "nix" "toml" "rust" ];
-      # userSettings = {
-      #   theme = {
-      #     mode = "system";
-      #     dark = "One Dark";
-      #     light = "One Light";
-      #   };
-      #   hour_format = "hour24";
-      #      lsp = {
-      #         rust-analyzer = { binary = { path_lookup = true; }; };
-      #
-      #  nix = { binary = { path_lookup = true; }; };
-      #};
-      # };
+      extensions = [ "nix" "toml" "rust" ];
+      userSettings = {
+        theme = {
+          mode = "system";
+          dark = "One Dark";
+          light = "One Light";
+        };
+        hour_format = "hour24";
+        lsp = {
+          rust-analyzer = { binary = { path_lookup = true; }; };
+
+          nix = { binary = { path_lookup = true; }; };
+        };
+      };
     };
   };
 
