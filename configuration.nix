@@ -162,14 +162,21 @@ in {
     programs.zed-editor = {
       enable = true;
       extraPackages = [ pkgs.nixd ];
-      extensions = [ "nix" "toml" "rust" ];
+      extensions = [ "nix" "toml" "rust" "catppuccin" ];
       userSettings = {
         theme = {
           mode = "system";
-          dark = "One Dark";
+          dark = "Catppuccin Mocha";
           light = "One Light";
         };
         hour_format = "hour24";
+        tab_bar = { show = true; };
+        tabs = { show_diagnostics = "errors"; };
+        indent_guides = {
+          enabled = true;
+          coloring = "indent_aware";
+        };
+        inlay_hints = { enabled = true; };
         lsp = {
           rust-analyzer = { binary = { path_lookup = true; }; };
 
