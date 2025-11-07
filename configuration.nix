@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 let
@@ -13,33 +9,28 @@ let
   });
 in {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
-    # For NixOS
     nixvim.nixosModules.nixvim
   ];
 
   nix = { settings.experimental-features = [ "nix-command" "flakes" ]; };
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Europe/London";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -82,33 +73,21 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.chris = {
     isNormalUser = true;
     description = "chris";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        kdePackages.kate
-        #  thunderbird
-      ];
+    packages = with pkgs; [ kdePackages.kate ];
   };
 
   users.defaultUserShell = pkgs.zsh;
 
   # Program Configuration
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = false;
+
+  programs.nix-ld.enable = true;
 
   programs.ssh.startAgent = true;
 
@@ -116,12 +95,9 @@ in {
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall =
-      true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
 
   programs.zsh = {
@@ -182,22 +158,24 @@ in {
   home-manager.users.chris = { pkgs, ... }: {
     home.stateVersion = "25.05";
     home.packages = [ ];
+    home.sessionVariables = { SHELL = "zsh"; };
     programs.zed-editor = {
       enable = true;
-      extensions = [ "nix" "toml" "rust" ];
-      userSettings = {
-        theme = {
-          mode = "system";
-          dark = "One Dark";
-          light = "One Light";
-        };
-        hour_format = "hour24";
-        lsp = {
-          rust-analyzer = { binary = { path_lookup = true; }; };
-
-          nix = { binary = { path_lookup = true; }; };
-        };
-      };
+      extraPackages = [ pkgs.nixd ];
+      # extensions = [ "nix" "toml" "rust" ];
+      # userSettings = {
+      #   theme = {
+      #     mode = "system";
+      #     dark = "One Dark";
+      #     light = "One Light";
+      #   };
+      #   hour_format = "hour24";
+      #      lsp = {
+      #         rust-analyzer = { binary = { path_lookup = true; }; };
+      #
+      #  nix = { binary = { path_lookup = true; }; };
+      #};
+      # };
     };
   };
 
@@ -207,6 +185,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    vulkan-tools
     git
     wezterm
     rustup
