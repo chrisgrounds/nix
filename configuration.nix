@@ -162,13 +162,11 @@ in {
     programs.zed-editor = {
       enable = true;
       extraPackages = [ pkgs.nixd ];
-      extensions = [ "nix" "toml" "rust" "catppuccin" ];
+      extensions = [ "nix" "toml" "rust" "catppuccin" "catppuccin-icons" ];
       userSettings = {
-        theme = {
-          mode = "system";
-          dark = "Catppuccin Mocha";
-          light = "One Light";
-        };
+        theme = "Catppuccin Mocha";
+        ui_font_size = "14";
+        buffer_font_size = "14";
         hour_format = "hour24";
         tab_bar = { show = true; };
         tabs = { show_diagnostics = "errors"; };
