@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.zed-editor = {
     enable = true;
-    extraPackages = [ pkgs.nixd ];
+    extraPackages = [ pkgs.nixd pkgs.nil ];
     extensions = [ "nix" "toml" "rust" "catppuccin" "catppuccin-icons" ];
     userSettings = {
       theme = "Catppuccin Mocha";

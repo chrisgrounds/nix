@@ -12,6 +12,9 @@ in {
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
     nixvim.nixosModules.nixvim
+    # Custom modules
+    (import ./zsh.nix)
+    (import ./nvim.nix)
   ];
 
   nix = { settings.experimental-features = [ "nix-command" "flakes" ]; };
@@ -102,61 +105,6 @@ in {
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" ];
-      theme = "robbyrussell";
-    };
-
-    shellAliases = { zed = "zeditor"; };
-  };
-
-  programs.nixvim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    defaultEditor = true;
-
-    opts = {
-      number = true;
-      shiftwidth = 2;
-    };
-
-    autoCmd = [{
-      event = [ "VimEnter" ];
-      pattern = [ "*" ];
-      command = "if &diff | colorscheme blue | endif";
-    }];
-
-    colorschemes.catppuccin.enable = true;
-
-    plugins.lsp = {
-      enable = true;
-      servers = { nixd.enable = true; };
-    };
-
-    plugins.conform-nvim = {
-      enable = true;
-      settings.formatters_by_ft.nix = [ "nixfmt" ];
-      settings.format_on_save = {
-        # Format on save in all files
-        lspFallback = true;
-        timeoutMs = 500;
-      };
-    };
-
-    plugins.treesitter = {
-      enable = true;
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [ nix ];
-    };
-  };
-
   home-manager.users.chris = { pkgs, ... }: {
     home.stateVersion = "25.05";
     home.packages = [ ];
@@ -164,8 +112,6 @@ in {
     imports = [ ./zed.nix ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vulkan-tools
     git
@@ -182,22 +128,5 @@ in {
     kitty
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-
+  system.stateVersion = "25.05";
 }
