@@ -20,6 +20,9 @@
 
         nix = { binary = { path_lookup = true; }; };
       };
+      minimap = {
+        show = "always";
+      };
     };
   };
 }
