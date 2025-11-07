@@ -84,6 +84,8 @@ in {
 
   users.defaultUserShell = pkgs.zsh;
 
+  nixpkgs.config.allowUnfree = true;
+
   # Program Configuration
   # programs.hyprland.enable = false;
 
@@ -165,8 +167,8 @@ in {
       extensions = [ "nix" "toml" "rust" "catppuccin" "catppuccin-icons" ];
       userSettings = {
         theme = "Catppuccin Mocha";
-        ui_font_size = "14";
-        buffer_font_size = "14";
+        ui_font_size = 22;
+        buffer_font_size = 20;
         hour_format = "hour24";
         tab_bar = { show = true; };
         tabs = { show_diagnostics = "errors"; };
@@ -183,9 +185,6 @@ in {
       };
     };
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -214,15 +213,6 @@ in {
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
