@@ -15,6 +15,7 @@ in {
     # Custom modules
     (import ./zsh.nix)
     (import ./nvim.nix)
+    (import ./steam.nix)
   ];
 
   nix = { settings.experimental-features = [ "nix-command" "flakes" ]; };
@@ -33,9 +34,7 @@ in {
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/London";
-
   i18n.defaultLocale = "en_GB.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
@@ -97,13 +96,6 @@ in {
   programs.ssh.startAgent = true;
 
   programs.firefox.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
 
   home-manager.users.chris = { pkgs, ... }: {
     home.stateVersion = "25.05";
