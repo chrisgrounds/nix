@@ -1,13 +1,15 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball
-    "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
-  nixvim = import (builtins.fetchGit {
-    url = "https://github.com/nix-community/nixvim";
-    ref = "nixos-25.05";
-  });
-in {
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+  nixvim = import (
+    builtins.fetchGit {
+      url = "https://github.com/nix-community/nixvim";
+      ref = "nixos-25.05";
+    }
+  );
+in
+{
   imports = [
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
@@ -18,7 +20,12 @@ in {
     (import ./steam.nix)
   ];
 
-  nix = { settings.experimental-features = [ "nix-command" "flakes" ]; };
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -80,7 +87,10 @@ in {
   users.users.chris = {
     isNormalUser = true;
     description = "chris";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [ kdePackages.kate ];
   };
 
@@ -97,20 +107,23 @@ in {
 
   programs.firefox.enable = true;
 
-  home-manager.users.chris = { pkgs, ... }: {
-    home.stateVersion = "25.05";
-    home.packages = [ ];
-    home.sessionVariables = { SHELL = "zsh"; };
-    imports = [ ./zed.nix ];
-  };
+  home-manager.users.chris =
+    { pkgs, ... }:
+    {
+      home.stateVersion = "25.05";
+      home.packages = [ ];
+      home.sessionVariables = {
+        SHELL = "zsh";
+      };
+      imports = [ ./zed.nix ];
+    };
 
   environment.systemPackages = with pkgs; [
-    vulkan-tools
     git
     wezterm
     rustup
     htop
-    nixfmt
+    nixfmt-rfc-style
     gcc
     gnumake
     spotify

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -11,6 +12,8 @@
       theme = "robbyrussell";
     };
 
-    shellAliases = { zed = "zeditor"; };
+    shellAliases = {
+      zed = "zeditor";
+    };
   };
 }
