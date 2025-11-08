@@ -13,6 +13,8 @@
     ./hardware-configuration.nix
     inputs.nixvim.nixosModules.nixvim
 
+    ./modules/home-manager/home.nix
+
     ./modules/nixos/zsh.nix
     ./modules/nixos/nvim.nix
     ./modules/nixos/steam.nix
@@ -62,7 +64,7 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
     enable = true;
-    package = pkgs.kdePackages.sddm;
+    # package = pkgs.kdePackages.sddm;
     wayland = {
       enable = true;
     };
@@ -108,13 +110,6 @@
   #   withUWSM = true; # recommended for most users
   #   xwayland.enable = true; # Xwayland can be disabled.
   # };
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "chris" = "import ./modules/home-manager/home.nix";
-    };
-  };
 
   environment.systemPackages = with pkgs; [
     git
