@@ -1,17 +1,17 @@
 { pkgs, ... }:
 
-let
-  nixvim = import (
-    builtins.fetchGit {
-      url = "https://github.com/nix-community/nixvim";
-      ref = "nixos-25.05";
-    }
-  );
-in
+# let
+#   nixvim = import (
+#     builtins.fetchGit {
+#       url = "https://github.com/nix-community/nixvim";
+#       ref = "nixos-25.05";
+#     }
+#   );
+# in
 {
   imports = [
     ./hardware-configuration.nix
-    nixvim.nixosModules.nixvim
+    # nixvim.nixosModules.nixvim
     # Custom modules
     (import ./zsh.nix)
     (import ./nvim.nix)
