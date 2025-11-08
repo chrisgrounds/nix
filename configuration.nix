@@ -20,6 +20,9 @@
     ./modules/nixos/steam.nix
   ];
 
+  # My modules
+  steam.enable = true;
+
   nix = {
     settings.experimental-features = [
       "nix-command"
@@ -97,8 +100,6 @@
     ];
     packages = with pkgs; [ kdePackages.kate ];
   };
-
-  steam.enable = false;
 
   users.defaultUserShell = pkgs.zsh;
 
