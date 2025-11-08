@@ -62,8 +62,15 @@ in
   }; # Configure keymap in X11
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    package = pkgs.kdePackages.sddm;
+    wayland = {
+      enable = true;
+    };
+    theme = "catppuccin-macchiato";
+  };
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -93,10 +100,14 @@ in
 
   users.defaultUserShell = pkgs.zsh;
 
-  # programs.hyprland.enable = false;
   programs.nix-ld.enable = true;
   programs.ssh.startAgent = true;
   programs.firefox.enable = true;
+  # programs.hyprland = {
+  #   enable = true;
+  #   withUWSM = true; # recommended for most users
+  #   xwayland.enable = true; # Xwayland can be disabled.
+  # };
 
   home-manager.users.chris =
     { ... }:
@@ -106,7 +117,10 @@ in
       home.sessionVariables = {
         SHELL = "zsh";
       };
-      imports = [ ./zed.nix ];
+      imports = [
+        ./zed.nix
+        #  ./hyprland.nix
+      ];
     };
 
   environment.systemPackages = with pkgs; [
@@ -122,6 +136,7 @@ in
     fzf
     ripgrep
     kitty
+    catppuccin-sddm
   ];
 
   system.stateVersion = "25.05";
