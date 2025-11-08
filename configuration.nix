@@ -96,6 +96,8 @@
     packages = with pkgs; [ kdePackages.kate ];
   };
 
+  steam.enable = false;
+
   users.defaultUserShell = pkgs.zsh;
 
   programs.nix-ld.enable = true;
