@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 # let
 #   nixvim = import (
@@ -11,11 +11,11 @@
 {
   imports = [
     ./hardware-configuration.nix
-    # nixvim.nixosModules.nixvim
-    # Custom modules
-    (import ./zsh.nix)
-    (import ./nvim.nix)
-    (import ./steam.nix)
+    inputs.nixvim.nixosModules.nixvim
+
+    ./modules/nixos/zsh.nix
+    ./modules/nixos/nvim.nix
+    ./modules/nixos/steam.nix
   ];
 
   nix = {
@@ -68,7 +68,7 @@
     };
     theme = "catppuccin-macchiato";
   };
-  # services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -107,19 +107,12 @@
   #   xwayland.enable = true; # Xwayland can be disabled.
   # };
 
-  home-manager.users.chris =
-    { ... }:
-    {
-      home.stateVersion = "25.05";
-      home.packages = [ ];
-      home.sessionVariables = {
-        SHELL = "zsh";
-      };
-      imports = [
-        ./zed.nix
-        #  ./hyprland.nix
-      ];
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "chris" = "import ./modules/home-manager/home.nix";
     };
+  };
 
   environment.systemPackages = with pkgs; [
     git
