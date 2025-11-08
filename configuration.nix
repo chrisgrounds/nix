@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
   nixvim = import (
     builtins.fetchGit {
       url = "https://github.com/nix-community/nixvim";
@@ -12,7 +11,6 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    (import "${home-manager}/nixos")
     nixvim.nixosModules.nixvim
     # Custom modules
     (import ./zsh.nix)
