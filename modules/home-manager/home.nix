@@ -9,6 +9,7 @@
       SHELL = "zsh";
     };
     imports = [
+      inputs.niri.homeModules.niri
       inputs.zen-browser.homeModules.twilight
       inputs.dms.homeModules.dankMaterialShell.default
       inputs.dms.homeModules.dankMaterialShell.niri
@@ -16,7 +17,7 @@
       ./zed.nix
       ./zen.nix
       ./dank-material-shell.nix
-      ./niri.nix
+      # ./niri.nix
     ];
 
     # Symlink niri/config.kdl

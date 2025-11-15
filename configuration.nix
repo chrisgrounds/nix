@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     inputs.nixvim.nixosModules.nixvim
-    inputs.niri.nixosModules.niri
 
     ./modules/home-manager/home.nix
 
