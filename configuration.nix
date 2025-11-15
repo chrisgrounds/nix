@@ -7,13 +7,11 @@
     ./modules/home-manager/home.nix
 
     ./modules/nixos/system.nix
+    ./modules/nixos/users.nix
     ./modules/nixos/zsh.nix
     ./modules/nixos/nvim.nix
     ./modules/nixos/steam.nix
   ];
-
-  # My modules
-  steam.enable = true;
 
   nix = {
     settings.experimental-features = [
@@ -22,34 +20,8 @@
     ];
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-  }; # Configure keymap in X11
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm = {
-    enable = true;
-    # package = pkgs.kdePackages.sddm;
-    wayland = {
-      enable = true;
-    };
-    theme = "catppuccin-macchiato";
-  };
-  services.desktopManager.plasma6.enable = true;
-
-  users.users.chris = {
-    isNormalUser = true;
-    description = "chris";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [ kdePackages.kate ];
-  };
+  # My modules
+  steam.enable = true;
 
   users.defaultUserShell = pkgs.zsh;
 

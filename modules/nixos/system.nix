@@ -53,4 +53,23 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
+  services.xserver.enable = true;
+  services.xserver.xkb = {
+    layout = "gb";
+    variant = "";
+  }; # Configure keymap in X11
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm = {
+    enable = true;
+    # package = pkgs.kdePackages.sddm;
+    wayland = {
+      enable = true;
+    };
+    theme = "catppuccin-macchiato";
+  };
+  services.desktopManager.plasma6.enable = true;
 }
