@@ -17,6 +17,7 @@
       ./zen.nix
     ];
 
-    xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
+    # Symlink niri/config.kdl
+    xdg.configFile."niri/config.kdl".source = ../../niri/config.kdl;
   };
 }
