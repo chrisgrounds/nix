@@ -10,9 +10,11 @@
     };
     imports = [
       inputs.zen-browser.homeModules.beta
+      inputs.niri.homeModules.niri
+
       ./zed.nix
       ./zen.nix
-      # ./niri.nix
+      ./niri.nix
       #  ./hyprland.nix
     ];
   };

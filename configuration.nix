@@ -10,7 +10,6 @@
     ./modules/nixos/zsh.nix
     ./modules/nixos/nvim.nix
     ./modules/nixos/steam.nix
-    ./modules/nixos/niri.nix
   ];
 
   # My modules
