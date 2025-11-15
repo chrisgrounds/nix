@@ -11,6 +11,7 @@
     imports = [
       inputs.zen-browser.homeModules.twilight
       inputs.niri.homeModules.niri
+      inputs.dms.homeModules.dankMaterialShell.default
 
       ./zed.nix
       ./zen.nix
