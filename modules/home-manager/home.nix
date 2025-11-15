@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   home-manager.users.chris = {
     home.username = "chris";
@@ -9,7 +9,9 @@
       SHELL = "zsh";
     };
     imports = [
+      inputs.zen-browser.homeModules.beta
       ./zed.nix
+      ./zen.nix
       # ./niri.nix
       #  ./hyprland.nix
     ];
