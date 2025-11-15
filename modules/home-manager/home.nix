@@ -10,15 +10,16 @@
     };
     imports = [
       inputs.zen-browser.homeModules.twilight
-      # inputs.niri.homeModules.niri
       inputs.dms.homeModules.dankMaterialShell.default
+      inputs.dms.homeModules.dankMaterialShell.niri
 
       ./zed.nix
       ./zen.nix
       ./dank-material-shell.nix
+      ./niri.nix
     ];
 
     # Symlink niri/config.kdl
-    xdg.configFile."niri/config.kdl".source = ../../niri/config.kdl;
+    # xdg.configFile."niri/config.kdl".source = ../../niri/config.kdl;
   };
 }

@@ -3,10 +3,10 @@
   programs.dankMaterialShell = {
     enable = true;
 
-    wallpaper = {
-      enable = true;
-      backend = "swaybg";
-      image = "/home/chris/Pictures/wallpapers/main.png";
+    niri = {
+      enableSpawn = true; # Auto-start DMS with niri
     };
+    enableDynamicTheming = true;
+
   };
 }
