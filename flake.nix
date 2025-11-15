@@ -21,6 +21,7 @@
     };
     dms.url = "github:AvengeMedia/DankMaterialShell";
     catppuccin.url = "github:catppuccin/nix";
+    matugen.url = "github:/InioX/Matugen";
   };
 
   outputs =

@@ -46,6 +46,7 @@
     alacritty
     swaylock
     swaybg
+    inputs.matugen.packages.x86_64-linux.default
   ];
 
   system.stateVersion = "25.05";

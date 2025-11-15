@@ -8,5 +8,9 @@
       enableSpawn = true; # Auto-start DMS with niri
     };
     enableDynamicTheming = true;
+    default.settings = {
+      theme = "auto";
+      dynamicTheming = true;
+    };
   };
 }
