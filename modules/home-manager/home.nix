@@ -17,7 +17,7 @@
       ./zed.nix
       ./zen.nix
       ./dank-material-shell.nix
-      # ./niri.nix
+      ./niri.nix
     ];
 
     # Symlink niri/config.kdl

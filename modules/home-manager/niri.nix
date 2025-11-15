@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.niri = {
     settings = {
@@ -6,7 +11,7 @@
         mod-key = "Super";
         mod-key-nested = "Alt";
       };
-      binds = lib.mkDefault {
+      binds = {
         # Application launchers
         "Mod+T".action.spawn = lib.getExe pkgs.wezterm;
         "Mod+D".action.spawn = [
@@ -14,6 +19,12 @@
           "-show"
           "drun"
         ];
+
+        # focus movement
+        "Mod+LEFT".action = config.lib.niri.actions.focus-column-left;
+        "Mod+RIGHT".action = config.lib.niri.actions.focus-column-right;
+        "Mod+DOWN".action = config.lib.niri.actions.focus-window-down;
+        "Mod+UP".action = config.lib.niri.actions.focus-window-up;
       };
     };
   };
