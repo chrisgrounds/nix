@@ -20,6 +20,7 @@
       ./dank-material-shell.nix
       ./niri.nix
       ./catppuccin.nix
+      ./rofi.nix
     ];
 
     # Symlink niri/config.kdl
