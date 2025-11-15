@@ -15,8 +15,8 @@
 
       ./zed.nix
       ./zen.nix
+      ./dank-material-shell.nix
     ];
-    programs.dankMaterialShell.enable = true;
 
     # Symlink niri/config.kdl
     xdg.configFile."niri/config.kdl".source = ../../niri/config.kdl;
