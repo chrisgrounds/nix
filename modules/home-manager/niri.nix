@@ -1,6 +1,4 @@
 { ... }:
 {
-  programs.niri = {
-    enable = true;
-  };
+  programs.niri.settings = { };
 }
