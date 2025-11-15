@@ -47,6 +47,7 @@
     rofi
     alacritty
     swaylock
+    swaybg
   ];
 
   system.stateVersion = "25.05";
