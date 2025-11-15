@@ -46,6 +46,7 @@
     catppuccin-sddm
     rofi
     alacritty
+    swaylock
   ];
 
   system.stateVersion = "25.05";
