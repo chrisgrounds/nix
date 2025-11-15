@@ -70,6 +70,7 @@
     ripgrep
     kitty
     catppuccin-sddm
+    rofi
   ];
 
   system.stateVersion = "25.05";
