@@ -3,11 +3,13 @@
   imports = [
     ./hardware-configuration.nix
     inputs.nixvim.nixosModules.nixvim
+    inputs.niri.nixosModules.niri
 
     ./modules/home-manager/home.nix
 
     ./modules/nixos/system.nix
     ./modules/nixos/users.nix
+    ./modules/nixos/niri.nix
     ./modules/nixos/zsh.nix
     ./modules/nixos/nvim.nix
     ./modules/nixos/steam.nix
