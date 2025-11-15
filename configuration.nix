@@ -28,6 +28,7 @@
 
   programs.nix-ld.enable = true;
   programs.firefox.enable = true;
+  programs.xwayland.enable = true;
 
   environment.systemPackages = with pkgs; [
     git
