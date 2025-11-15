@@ -1,13 +1,25 @@
-{ ... }:
+{ inputs, ... }:
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   nixpkgs.config.allowUnfree = true;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+  };
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    dates = "weekly";
+  };
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
+  hardware.cpu.amd.updateMicrocode = true;
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
