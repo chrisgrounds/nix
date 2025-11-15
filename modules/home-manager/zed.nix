@@ -14,8 +14,9 @@
       "catppuccin-icons"
     ];
     userSettings = {
-      theme = "Catppuccin Mocha";
-      icon_theme = "Catppuccin Mocha";
+      # These are now pulled from the catppuccin nix package
+      # theme = "Catppuccin Mocha";
+      # icon_theme = "Catppuccin Mocha";
       ui_font_size = 22;
       buffer_font_size = 20;
       hour_format = "hour24";

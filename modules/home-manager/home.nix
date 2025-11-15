@@ -19,7 +19,6 @@
       ./zen.nix
       ./dank-material-shell.nix
       ./niri.nix
-      ./rofi.nix
       ./catppuccin.nix
     ];
 
