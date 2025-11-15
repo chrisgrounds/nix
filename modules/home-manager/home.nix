@@ -13,11 +13,13 @@
       inputs.zen-browser.homeModules.twilight
       inputs.dms.homeModules.dankMaterialShell.default
       inputs.dms.homeModules.dankMaterialShell.niri
+      inputs.catppuccin.homeManagerModules.catppuccin
 
       ./zed.nix
       ./zen.nix
       ./dank-material-shell.nix
       ./niri.nix
+      ./rofi.nix
     ];
 
     # Symlink niri/config.kdl

@@ -43,7 +43,6 @@
     ripgrep
     kitty
     catppuccin-sddm
-    rofi
     alacritty
     swaylock
     swaybg
