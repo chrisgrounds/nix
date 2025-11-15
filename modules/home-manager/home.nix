@@ -9,7 +9,7 @@
       SHELL = "zsh";
     };
     imports = [
-      inputs.zen-browser.homeModules.beta
+      inputs.zen-browser.homeModules.twilight
       inputs.niri.homeModules.niri
 
       ./zed.nix
