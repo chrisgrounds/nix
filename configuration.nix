@@ -45,6 +45,7 @@
     kitty
     catppuccin-sddm
     rofi
+    alacritty
   ];
 
   system.stateVersion = "25.05";

@@ -15,8 +15,6 @@
 
       ./zed.nix
       ./zen.nix
-      # ./niri.nix
-      #  ./hyprland.nix
     ];
   };
 }
