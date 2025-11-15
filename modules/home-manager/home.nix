@@ -10,7 +10,7 @@
     };
     imports = [
       ./zed.nix
-      ./niri.nix
+      # ./niri.nix
       #  ./hyprland.nix
     ];
   };

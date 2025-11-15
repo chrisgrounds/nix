@@ -10,6 +10,7 @@
     ./modules/nixos/zsh.nix
     ./modules/nixos/nvim.nix
     ./modules/nixos/steam.nix
+    ./modules/nixos/niri.nix
   ];
 
   # My modules
@@ -54,13 +55,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs.nix-ld.enable = true;
-  programs.ssh.startAgent = true;
   programs.firefox.enable = true;
-  # programs.hyprland = {
-  #   enable = true;
-  #   withUWSM = true; # recommended for most users
-  #   xwayland.enable = true; # Xwayland can be disabled.
-  # };
 
   environment.systemPackages = with pkgs; [
     git
