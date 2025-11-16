@@ -51,7 +51,17 @@
         "Mod+Shift+S".action = config.lib.niri.actions.spawn [
           "sh"
           "-c"
-          "grim -g \"$(slurp)\" ~/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png"
+          ''
+            dir="$HOME/Pictures/Screenshots"
+            mkdir -p "$dir"
+            file="$dir/screenshot-$(date +%Y%m%d-%H%M%S).png"
+
+            # Take region screenshot, save to file AND copy to clipboard
+            grim -g "$(slurp)" - | tee "$file" | wl-copy
+
+            # Optional: tiny DMS notification if you want
+            # dms notify "Screenshot saved to $file and copied to clipboard"
+          ''
         ];
       };
     };

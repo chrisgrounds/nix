@@ -51,6 +51,7 @@
     xwayland-satellite
     grim
     slurp
+    wl-clipboard
   ];
 
   system.stateVersion = "25.05";
