@@ -49,8 +49,6 @@
     swaybg
     inputs.matugen.packages.x86_64-linux.default
     xwayland-satellite
-    grim
-    slurp
     wl-clipboard
   ];
 
