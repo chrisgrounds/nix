@@ -48,6 +48,7 @@
     swaylock
     swaybg
     inputs.matugen.packages.x86_64-linux.default
+    xwayland-satellite
   ];
 
   system.stateVersion = "25.05";

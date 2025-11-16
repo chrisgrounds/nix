@@ -76,7 +76,7 @@
   # };
   services.displayManager.gdm = {
     enable = true;
-    wayland = true;
+    # wayland = true;
   };
   services.desktopManager.plasma6.enable = true;
 }
