@@ -49,6 +49,8 @@
     swaybg
     inputs.matugen.packages.x86_64-linux.default
     xwayland-satellite
+    grim
+    slurp
   ];
 
   system.stateVersion = "25.05";
